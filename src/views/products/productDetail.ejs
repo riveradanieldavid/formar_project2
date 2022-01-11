@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+    <body class="productdetail">
+
+        <%- include('../partials/header') %>
+
+            <main class="contenedor-producto">
+                <div class="contenedor-general-c-p">
+
+                    <!-- CAROUSELS -->
+                    <!-- productImg SIMPLEMENTE EXTRAE Y AGRUPA IMAGENES PARA INPRIMIRLAS EN SLIDE SEGUN EL id PUESTO EN URI -->
+                    <!-- productImg[i] IMPRIME  img-producto-polera-blanco1.jpg  y (...blanco2.jpg, ...blanco3.jpg, ...blanco4.jpg ) -->
+                    <div class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <!------------ for RECORRE productImg (array) DEVOLVIENDO TODO SU CONTENIDO -->
+                                <!--                      productImg YA TIENE LAS IMAGENES. CONFIGURADO EN productsController.js -->
+                                <% for( let i=0; i <productImg.length; i++ ) { %>
+                                    <!--               <= AGREGANDO "=" AÑADE UN undefined AL FINAL COMO INDICE -->
+                                    <!--       =0  INICIA INDICE EN 0 RECORRIENDO CADA ELEMENTO  DE productImg. SI EN INDICE 1 INICIARA PIERDES LA IMAGEN PRIMERA EN INDICE  0 -->
+                                    <!------------ for RECORRE productImg (array) DEVOLVIENDO TODO SU CONTENIDO / -->
+                                    <!------------------------ productImg[i] IMPRIME EN NAVEGADOR IMAGENES DEVUELTAS POR for -->
+                                    <li class="splide__slide">
+                                        <!--                                                                                productImg[i].image  NO VA PORQUE YA HAY IMAGENES EN productImg-->
+                                        <img class="img" src="/img/productDetail-splide/<%= productImg[i] %>" alt="">
+                                        <!-- ETIQUETE img ENVIA LAS IMAGENES AL NAVEGADOR-->
+                                    </li>
+                                    <!------------------------ productImg[i] IMPRIME EN NAVEGADOR IMAGENES DEVUELTAS POR for  / -->
+                                    <!-- COMPROBAR -->
+                                    <%= console.log(productImg[i]); %>
+                                        <!--                                   [i]  SOLO IMPRIME  [0] [1] [2] [3] -->
+                                        <!--                 productImg[i] IMPRIME  img-producto-polera-blanco1.jpg  y (...blanco2.jpg, ...blanco3.jpg, ...blanco4.jpg, undefined) -->
+                                        <% } %>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- DETALLE DE PRODUCTO -->
+                    <div class="caracteristicas-producto">
+                        <div class="descripcion-producto">
+                            <p class="ml-1">
+
+                                <span class="nameproduct">
+                                    <%=product.name%>
+                                </span>
+
+                                <!-- PRECIO DEL PRODUCTO -->
+                                <!-- SI HAY DESCUENTO -->
+                                <% if (product.discount !=0) { %>
+                                    <!-- PRECIO REAL CHIQUITO COLOR VERDE Y TACHADO -->
+                                    <span class="pricesmall">
+                                        <span>
+                                            $ <%= toThousand(product.price)%>
+                                        </span>
+                                        /
+                                        <%= product.discount %>% OFF
+                                    </span>
+                                    <!-- Y PRECIO CON DESCUENTO DESTACADO -->
+                                    <span class="priceoff ">
+                                        $ <%= toThousand(product.price - ((product.price * product.discount) /100)) %>
+                                    </span>
+                                    <% }else{ %>
+                                        <!-- SINO PRECIO REAL -->
+                                        <span class="precio-estilo">
+                                            $ <%= toThousand(product.price)%>
+                                        </span>
+
+                                        <% } %>
+                            </p>
+                            <!-- PRECIO DEL PRODUCTO  / -->
+
+                            <h2>
+                                Descripción
+                            </h2>
+                            <span class="descriptions">
+                                <%=product.description%>
+                            </span>
+
+
+                            <h2>
+                                Color
+                            </h2>
+
+                            <span class="descriptions">
+                                <%=product.color%>
+                            </span>
+
+                            <h2>
+                                Size
+                            </h2>
+                            <span class="descriptions">
+                                <%=product.size%>
+                            </span>
+
+
+                            <a style="font-size: 17px !important ;" class="btn btn-dark" href="#"
+                                onclick="addItem(event,'<%=product.id%>')">
+                                COMPRAR</a>
+
+                            <hr>
+
+                            <a style="background-color: white !important; color: black !important  ;" name="" id=""
+                                class="btn btn-primary" href="/" role="button">
+                                volver al incio</a>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </main>
+
+            <!-- Splide -->
+            <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    new Splide('.splide').mount();
+                });
+            </script>
+            <!-- Splide /-->
+
+            <%- include('../partials/footer') %>
+
+            <!-- PONER AQUI ARCHIVOS javascript QUE QUIERAS VINCULAR CON ESTE ARCHIVO -->
+                <!-- CODIGO PUESTO EN ARCHIVOS javascript SE VEN EN CONSOLA AL EJECUTAR EN EL NAVEGADOR ESTE ARCHIVO ejs -->
+                <!-- SI NO VINCULAS ASÍ NUNCA AFECTARÁ TU javascript A TU ARCHIVO html o ejs ... -->
+                <script src="/javascripts/index.js"></script>
+                <script src="/javascripts/cart.js"></script>
+                <script src="/javascripts/app.js"></script>
+
+    </body>
+
+</html>

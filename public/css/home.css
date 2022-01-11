@@ -1,0 +1,448 @@
+/* BOTON COMPRAR HOME */
+.btnBuyHome {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    background: black;
+    color: white !important;
+    font-weight: bold;
+    margin: -40px auto 52px;
+    border-radius: 7px;
+    font-size: 14px;
+    margin: auto;
+    text-align: center;
+}
+
+.btnBuyHome:hover {
+    background: linear-gradient(180deg, #468CCF 5%, #63B8EE 100%);
+}
+
+/* QUITAR ESPACIO VACÍO DESPUÉS DE CATEGORÍAS */
+.muchSale {
+    margin-top: -17%;
+}
+
+
+/* TITULO OFETAS MOBILE CENTRADO */
+.ofertas-main {
+    text-align: center;
+}
+
+/* SOLUCION A MENU SECCIONES QUEDE LIBRE */
+.dropdownSectionsHome {
+    display: flex;
+}
+
+/* CARRITO DEL HEADER */
+.btn-cart:hover {
+    background-color: transparent !important;
+}
+
+/* HEAD DE LOS SLIDES DEL HOME */
+.headSlide {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 22px 0 7px;
+    background: aqua;
+    padding: 23px;
+    border-radius: 11px;
+}
+
+
+
+/* DETALLE PRODUCTO ESTILOS */
+h5.detailProductHome {
+    display: block;
+    margin-top: 33px;
+    margin-left: -23px;
+}
+
+
+
+
+/* riveradanieldavid */
+div.mujer {
+    max-width: 50%;
+}
+
+section.sugest {
+    margin: -10% 0 5%;
+}
+
+
+@media (max-width:480px) {
+
+    /* OCULTAR MENU HOVER */
+    .dropdown {
+        display: none;
+    }
+
+    header nav div.header-buscador form input {
+        position: absolute;
+        top: 50px;
+        left: 27vw;
+        display: block;
+        max-width: 53%
+    }
+
+    .btn-search-header {
+        background-color: white;
+        position: absolute;
+        top: 87px;
+        left: 45.7%;
+        color: white
+    }
+
+
+}
+
+
+
+
+
+
+main.home section.banner-main img {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+main.home section.tipo-main div.mujer a img {
+    width: 100%;
+}
+
+main.home section.tipo-main div.hombre a img {
+    width: 100%;
+}
+
+main.home section.tipo-main div.mujer h4 {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 60px;
+    font-size: 30px;
+    color: white;
+
+
+}
+
+main.home section.tipo-main div.hombre h4 {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 60px;
+    font-size: 30px;
+    color: white;
+}
+
+main.home h2 {
+    font-size: 35px;
+    margin-bottom: 35px;
+}
+
+main.home section.ofertas-main article.ofertas-android {
+    display: flex;
+}
+
+main.home section.ofertas-main article.ofertas-android div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+main.home section.ofertas-main article.ofertas-android div a img {
+    width: 97%;
+    margin: auto;
+}
+
+main.home section.ofertas-main article.ofertas-tablet div a img {
+    width: 50%;
+
+}
+
+main.home section.ofertas-main article.ofertas-tablet div {
+    display: none;
+}
+
+main.home section.ofertas-main article.ofertas-desktop div a img {
+    width: 50%;
+    display: none;
+}
+
+main.home section.ofertas-main article.ofertas-desktop div {
+    display: none;
+}
+
+
+main.home section.ofertas-main article.ofertas-android div h5 {
+    width: 90%;
+    text-align: center;
+    position: relative;
+    bottom: 60px;
+    font-size: 25px;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+    padding: 7px;
+    width: 45%;
+}
+
+main.home section.ofertas-main article.ofertas-tablet div h5 {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 60px;
+    font-size: 25px;
+    color: white;
+
+}
+
+main.home section.ofertas-main article.ofertas-desktop div h5 {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    bottom: 60px;
+    font-size: 25px;
+    color: white;
+
+}
+
+
+@media (min-width:225px) {
+
+    div.mujer {
+        max-width: 100%;
+    }
+
+}
+
+
+
+@media (min-width:481px) {
+
+    main.home section.tipo-main {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+
+    }
+
+
+    main.home section.tipo-main div.mujer a img {
+        width: 92%;
+        height: 73%;
+        margin: auto;
+    }
+
+    main.home section.tipo-main div.hombre a img {
+        width: 100%;
+        height: 77%;
+    }
+
+    main.home section.tipo-main div.mujer h4 {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        bottom: 60px;
+        font-size: 25px;
+        color: white;
+    }
+
+    main.home section.tipo-main div.hombre h4 {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        bottom: 60px;
+        font-size: 25px;
+        color: white;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        width: 50%;
+
+    }
+
+    main.home section.ofertas-main article.ofertas-android {
+        width: 50%;
+        display: none;
+    }
+
+
+    main.home section.ofertas-main article.ofertas-tablet div {
+        /* width: 50%; */
+        display: block;
+        margin: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet {
+        width: 50%;
+        display: flex;
+
+
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        /* width: 97%; */
+        width: auto;
+        height: 287px;
+
+    }
+
+
+}
+
+
+
+
+
+@media (min-width: 724px) {
+
+
+
+    main.home section.ofertas-main article.ofertas-android {
+
+        width: 33%;
+        display: none;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet {
+        margin: auto;
+        width: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        height: 247px;
+    }
+
+    main.home section.ofertas-main article.ofertas-desktop {
+
+        width: 33%;
+
+    }
+
+    main.home section.ofertas-main article.ofertas-desktop {
+        display: flex;
+        display: none;
+    }
+
+
+    main.home section.ofertas-main article.ofertas-desktop div {
+
+        width: 100%;
+        display: block;
+
+
+    }
+
+    main.home section.ofertas-main article.ofertas-desktop div a img {
+        width: 97%;
+        display: block;
+    }
+
+    main.home section.ofertas-main article.ofertas-desktop div h5 {
+        width: 100%;
+
+    }
+
+}
+
+
+@media (min-width: 450px) {
+    main.home section.ofertas-main article.ofertas-tablet {
+        margin: auto;
+        width: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        margin: auto;
+        height: 215px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    main.home section.ofertas-main article.ofertas-tablet {
+        margin: auto;
+        width: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        margin: auto;
+        height: 284px;
+    }
+
+}
+
+
+@media (min-width: 1400px) {
+    main.home section.ofertas-main article.ofertas-tablet {
+        margin: auto;
+        width: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        height: 397px;
+    }
+
+}
+
+
+
+@media (min-width: 2500px) {
+    main.home section.ofertas-main article.ofertas-tablet {
+        margin: auto;
+        width: auto;
+    }
+
+    main.home section.ofertas-main article.ofertas-tablet div a img {
+        height: 477px;
+    }
+
+}
+
+
+/* BOTON COMPRAR MOBILE ESTILOS */
+@media (max-width:480px) {
+
+    /* BUTTON DE COMPRAR CARRITO */
+    .buttonBuy {
+        font-size: 7rem;
+    }
+
+    .btnBuyHome {
+        margin: -40px auto 52px;
+    }
+
+}
+
+
+
+
+/* OCULTAR OFERTAS  */
+@media (max-width:480px) {
+    main.home section.ofertas-main {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}
+
+/* OCULTAR OFERTAS  */
+@media (min-width:481px) {
+
+    .dropdownSectionsHome {
+        display: none;
+    }
+
+    h2.ofertas-main {
+        display: none;
+    }
+
+    main.home section.ofertas-main {
+        display: none;
+    }
+
+
+}

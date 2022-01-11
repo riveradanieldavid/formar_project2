@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head', {title: 'Login de usuario'}) %>
+
+<body class="login">
+    
+    <%- include('../partials/header') %> 
+
+    <!--FORMULARIO-->
+    <main class="add">
+    <section class="contain-add">
+        <h3>INICIAR SESION</h3>
+        <form action="" method="POST" id="form-login" autocomplete="off">
+            <div>
+                <label for="email">Ingrese Email
+                <input class="form-control" type="email" placeholder="Ingrese su Email" id="email" name="email"></label>
+            </div>
+            <div>
+                <label for="password">Contraseña
+                    <div class="d-flex">
+                <input class="form-control" type="password" placeholder="Ingrese su Contraseña" name="password" id="password"></label>
+                <a class="btn btn-info ms-2" type="button" id="watch" style="width:50px">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </div>
+            </div>
+            <div>
+                <label for="remember"><input type="checkbox" name="remember" id="terms" value="remember"> Recordame</label>
+            </div>
+            <div class="box-error">
+                <span id="error-email" class="text-danger"><%= locals.errores && errores.email ? errores.email.msg : null %> </span>
+            </div>
+            <div>
+                <button class="button-blue" type="submit">Iniciar</button>
+                <button class="button-red" type="reset">Cancelar</button>
+            </div>
+                      
+        </form>
+
+        <div>
+           <label for="">¿No tenes usuario? <button class="button-blue"><a href="/users/register">Registrate</a></button></label>
+          </div> 
+
+        </section>
+    </main>
+
+    <%- include('../partials/footerRegister') %> 
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US" id="productsWoman">
+<%- include('../partials/head') %>
+
+    <body class="size-1520">
+        <%- include('../partials/header') %>
+            <!-- HEADER -->
+
+            <!-- ASIDE NAV AND CONTENT -->
+            <div class="line">
+                <div class="box margin-bottom">
+                    <div class="margin2x resultsHome-margin2x">
+                        <!-- ASIDE NAV -->
+                        <aside class="s-12 m-4 l-3 xl-2" id="asideMargin">
+                            <h4 class="margin-bottom">Filtrar</h4>
+                            <div class="aside-nav minimize-on-small">
+                                <p class="aside-nav-text">Select Category</p>
+                                <ul>
+                                    <li><a>First Category</a></li>
+                                    <li>
+                                        <a>Second Category</a>
+                                        <ul>
+                                            <li><a>Sub Category 1</a></li>
+                                            <li><a>Sub Category 2</a></li>
+                                            <li>
+                                                <a>Sub Category 3</a>
+                                                <ul>
+                                                    <li><a>Sub Sub Category 1</a></li>
+                                                    <li><a>Sub Sub Category 2</a></li>
+                                                    <li><a>Sub Sub Category 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>Third Category</a>
+                                        <ul>
+                                            <li><a>Sub Category 1</a></li>
+                                            <li><a>Sub Category 2</a></li>
+                                            <li>
+                                                <a>Sub Category 3</a>
+                                                <ul>
+                                                    <li><a>Sub Sub Category 1</a></li>
+                                                    <li><a>Sub Sub Category 2</a></li>
+                                                    <li><a>Sub Sub Category 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a>Fourth Category</a></li>
+                                    <li>
+                                        <a>Fifth Category</a>
+                                        <ul>
+                                            <li><a>Sub Category 1</a></li>
+                                            <li><a>Sub Category 2</a></li>
+                                            <li>
+                                                <a>Sub Category 3</a>
+                                                <ul>
+                                                    <li><a>Sub Sub Category 1</a></li>
+                                                    <li><a>Sub Sub Category 2</a></li>
+                                                    <li><a>Sub Sub Category 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>Sixth Category</a>
+                                        <ul>
+                                            <li><a>Sub Category 1</a></li>
+                                            <li><a>Sub Category 2</a></li>
+                                            <li>
+                                                <a>Sub Category 3</a>
+                                                <ul>
+                                                    <li><a>Sub Sub Category 1</a></li>
+                                                    <li><a>Sub Sub Category 2</a></li>
+                                                    <li><a>Sub Sub Category 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                        <!-- CONTENT -->
+                        <section class="s-12 m-8 l-9 xl-10">
+                            <!-- CAROUSEL -->
+                            <!-- Breadcrumb -->
+                            <nav class="breadcrumb-nav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><span>Resultados</span></li>
+                                </ul>
+                            </nav>
+                            <h1 class="margin-bottom">Buscaste por "<%= toSearch %>" </h1>
+                            <!-- Pruducts -->
+
+                            <% if (searchResults !='' ){%>
+                                <div class="margin2x">
+                                    <!-- <div class="margin2x resultsHome-margin2x"> -->
+                                    <% for( let i=0; i < searchResults.length; i++ ) { %>
+                                        <div class="s-12 m-12 l-4 xl-3 xxl-3">
+                                            <div class="pImage">
+                                                <a class="productImage"
+                                                    href="/products/productDetail/<%= searchResults[i].id%>">
+                                                    <img class="imgSearchResultsHome"
+                                                        src="/img/productDetail-splide/<%= searchResults[i].image[0].file == 0 ? 'default.png' : searchResults[i].image[0].file%>"
+                                                        alt="" width="100px">
+                                                    <img class="fullImgHoverResultsHome" src="">
+                                                </a>
+                                            </div>
+                                            <div class="dataWoman">
+                                                <!-- NOMBRE DEL PRODUCTO -->
+                                                <%= searchResults[i].name %>
+                                                    <!-- SI HAY DESCUENTO -->
+                                                    <% if (searchResults[i].discount !=0) { %>
+                                                        <!-- PRECIO REAL CHIQUITO COLOR VERDE Y TACHADO -->
+                                                        <div>
+                                                            <span class="priceSmallthroughResultsHome">
+                                                                $ <%= toThousand(searchResults[i].price)%>  /
+                                                            </span>
+                                                            <%= searchResults[i].discount %>% OFF
+                                                                <!-- Y PRECIO CON DESCUENTO DESTACADO -->
+                                                                <span class="priceStyleResultsHome">
+                                                                    $ <%= toThousand(searchResults[i].price -
+                                                                        ((searchResults[i].price *
+                                                                        searchResults[i].discount) /100)) %>
+                                                                </span>
+                                                        </div>
+                                                        <% }else{ %>
+                                                            <!-- SINO PRECIO REAL -->
+                                                            <span class="priceStyleResultsHome">
+                                                                $ <%= toThousand(searchResults[i].price)%>
+                                                            </span>
+                                                            <% } %>
+                                                                <!-- PRECIO DEL PRODUCTO  / -->
+                                            </div>
+                                            <!-- BOTÓN COMPRA -->
+                                            <a class="btnBuyResultsHome" href="#"
+                                                onclick="addItem(event,'<%=searchResults[i].id%>')">
+                                                COMPRAR
+                                            </a>
+                                            <!-- BOTÓN COMPRA / -->
+
+                                        </div>
+                                        <% } %>
+                                            <% } else{%>
+                                                <h2 style="text-align:center; color: red;">
+                                                    Prueba con otras palabras
+                                                </h2>
+                                                <% } %>
+
+
+                                </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU DESPLEGABLE FILTRO -->
+            <script type="text/javascript" src="/templates/shop-template/js/responsee.js"></script>
+            <script type="text/javascript" src="/templates/shop-template/owl-carousel/owl.carousel.js"></script>
+
+            <%- include('../partials/footer') %>
+
+                <!-- PONER AQUI ARCHIVOS javascript QUE QUIERAS VINCULAR CON ESTE ARCHIVO -->
+                <!-- CODIGO PUESTO EN ARCHIVOS javascript SE VEN EN CONSOLA AL EJECUTAR EN EL NAVEGADOR ESTE ARCHIVO ejs -->
+                <!-- SI NO VINCULAS ASÍ NUNCA AFECTARÁ TU javascript A TU ARCHIVO html o ejs ... -->
+                <script src="/javascripts/index.js"></script>
+                <script src="/javascripts/cart.js"></script>
+                <script src="/javascripts/app.js"></script>
+
+    </body>
+
+</html>

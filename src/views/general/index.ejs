@@ -1,0 +1,618 @@
+<!-- NECESARIOCART -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+    <body class="home">
+
+        <%- include('../partials/header') %>
+
+            <main class="home">
+
+                <!-- SLIDE HOME BANNER SPLIDE-->
+                <div id="image-slider" class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <!--                      bannerImages YA TIENE LAS IMAGENES. CONFIGURADO EN productsController.js -->
+                            <% for( let i=0; i < bannerImages.length; i++ ) { %>
+                                <li class="splide__slide">
+                                    <!--                                                                      bannerImages[i].image  NO VA PORQUE YA HAY IMAGENES EN bannerImages-->
+                                    <img class="img" src="/img/banner-splide/<%= bannerImages[i] %>" alt="">
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CATEGORIAS -->
+                <section class="tipo-main">
+                    <!-- A ESTE ARRAY    .reverse()  LE INVIERTE SUS INDICES PARA MOSTRAR CONTENIDO AL REVES!-->
+                    <% productCategory.reverse().forEach(element=> { %>
+                        <div class="mujer">
+                            <!--           /RUTA URI -->
+                            <a href="/products/<%= element.name %> ">
+                                <!--                          = NOMBRE IMAGEN EN DB -->
+                                <!--             /RUTA AL ARCHIVO  -->
+                                <img src="/img/<%= element.image[0].file %> " alt="">
+                                <!--                         = NOMBRE IMAGEN EN DB -->
+                            </a>
+                            <h4>
+                                <%= element.description%>
+                            </h4>
+                        </div>
+                        <% }) %>
+                </section>
+
+                <section class="dropdownSectionsHome">
+                    <!-- ASIDE NAV -->
+                    <aside class="s-12 m-4 l-3 xl-2" id="asideMargin">
+                        <!-- <h4 class="margin-bottom">Filtrar</h4> -->
+                        <div class="aside-nav minimize-on-small">
+                            <p class="aside-nav-text">Select Category</p>
+                            <ul>
+                                <li><a>First Category</a></li>
+                                <li>
+                                    <a>Second Category</a>
+                                    <ul>
+                                        <li><a>Sub Category 1</a></li>
+                                        <li><a>Sub Category 2</a></li>
+                                        <li>
+                                            <a>Sub Category 3</a>
+                                            <ul>
+                                                <li><a>Sub Sub Category 1</a></li>
+                                                <li><a>Sub Sub Category 2</a></li>
+                                                <li><a>Sub Sub Category 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>Third Category</a>
+                                    <ul>
+                                        <li><a>Sub Category 1</a></li>
+                                        <li><a>Sub Category 2</a></li>
+                                        <li>
+                                            <a>Sub Category 3</a>
+                                            <ul>
+                                                <li><a>Sub Sub Category 1</a></li>
+                                                <li><a>Sub Sub Category 2</a></li>
+                                                <li><a>Sub Sub Category 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a>Fourth Category</a></li>
+                                <li>
+                                    <a>Fifth Category</a>
+                                    <ul>
+                                        <li><a>Sub Category 1</a></li>
+                                        <li><a>Sub Category 2</a></li>
+                                        <li>
+                                            <a>Sub Category 3</a>
+                                            <ul>
+                                                <li><a>Sub Sub Category 1</a></li>
+                                                <li><a>Sub Sub Category 2</a></li>
+                                                <li><a>Sub Sub Category 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>Sixth Category</a>
+                                    <ul>
+                                        <li><a>Sub Category 1</a></li>
+                                        <li><a>Sub Category 2</a></li>
+                                        <li>
+                                            <a>Sub Category 3</a>
+                                            <ul>
+                                                <li><a>Sub Sub Category 1</a></li>
+                                                <li><a>Sub Sub Category 2</a></li>
+                                                <li><a>Sub Sub Category 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </section>
+
+                <!-- MAS VENDIDOS CAROUSEL OWL-->
+                <section class="muchSale">
+                    <div class="headSlide">
+                        <h4 class="muchSale">Más Vendidos</h4>
+                        <div class="filterHome">
+                            <form action="/action_page.php">
+                                <select name="cars" id="cars">
+                                    <option value="">Ordenar por precio: Alto a bajo</option>
+                                    <option value="">Ordenar por precio: Bajo a alto</option>
+                                    <option value="">Lo último</option>
+                                    <option value="">Lo más valorado</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="line hide-s">
+                        <div id="muchSale-carousel" class="owl-carousel owl-theme">
+                            <% productsMuchSale.forEach(element=> { %>
+                                <article class="ofertas-android">
+                                    <div class="imgContainerSlide">
+                                        <a href="/products/productDetail/<%= element.id %>">
+                                            <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                            <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                        </a>
+                                        <div class="descriptionProduct">
+                                            <h5 class="detailProductHome">
+                                                <ul>
+                                                    <li>
+                                                        <%= element.name %>
+                                                    </li>
+                                                    <li>
+                                                        $ <%= toThousand(element.price) %>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <a class="btnBuyHome" href="#"
+                                                onclick="addItem(event,'<%=element.id%>')">COMPRAR</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% }) %>
+
+                                    <div class="item"><img src="/img/logo-roma.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MAS VENDIDOS CAROUSEL OWL /-->
+
+                <!-- PROMOCIÓN CAROUSEL OWL-->
+                <section class="promo">
+                    <div class="headSlide">
+                        <h4 class="promo">Promoción</h4>
+                        <div class="filterHome">
+                            <form action="/action_page.php">
+                                <select name="cars" id="cars">
+                                    <option value="">Ordenar por precio: Alto a bajo</option>
+                                    <option value="">Ordenar por precio: Bajo a alto</option>
+                                    <option value="">Lo último</option>
+                                    <option value="">Lo más valorado</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="line hide-s">
+                        <div id="promo-carousel" class="owl-carousel owl-theme">
+                            <% productsPromo.forEach(element=> { %>
+                                <article class="ofertas-android">
+                                    <div>
+                                        <a href="/products/productDetail/<%= element.id %>">
+                                            <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                            <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                        </a>
+                                        <div class="descriptionProduct">
+                                            <h5 class="detailProductHome">
+                                                <ul>
+                                                    <li>
+                                                        <%= element.name %>
+                                                    </li>
+                                                    <li>
+                                                        $ <%= toThousand(element.price) %>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <a class="btnBuyHome" href="#"
+                                                onclick="addItem(event,'<%=element.id%>')">COMPRAR</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% }) %>
+                                    <div class="item"><img src="/img/logo-roma.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- PROMOCIÓN CAROUSEL OWL /-->
+
+                <!-- OFERTAS CAROUSEL OWL-->
+                <section class="promo">
+                    <div class="headSlide">
+                        <h4 class="promo">Ofertas</h4>
+                        <div class="filterHome">
+                            <form action="/action_page.php">
+                                <select name="cars" id="cars">
+                                    <option value="">Ordenar por precio: Alto a bajo</option>
+                                    <option value="">Ordenar por precio: Bajo a alto</option>
+                                    <option value="">Lo último</option>
+                                    <option value="">Lo más valorado</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="line hide-s">
+                        <div id="off-carousel" class="owl-carousel owl-theme">
+                            <% productsOff.forEach(element=> { %>
+                                <article class="ofertas-android">
+                                    <div>
+                                        <a href="/products/productDetail/<%= element.id %>">
+                                            <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                            <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                        </a>
+                                        <div class="descriptionProduct">
+                                            <h5 class="detailProductHome">
+                                                <ul>
+                                                    <li>
+                                                        <%= element.name %>
+                                                    </li>
+                                                    <li>
+                                                        $ <%= toThousand(element.price) %>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <a class="btnBuyHome" href="#"
+                                                onclick="addItem(event,'<%=element.id%>')">COMPRAR</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% }) %>
+                                    <div class="item"><img src="/img/logo-roma.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- OFERTAS CAROUSEL OWL /-->
+
+                <!-- LIQUIDACIÓN CAROUSEL OWL-->
+                <section class="promo">
+                    <div class="headSlide">
+                        <h4 class="promo">Liquidación</h4>
+                        <div class="filterHome">
+                            <form action="/action_page.php">
+                                <select name="cars" id="cars">
+                                    <option value="">Ordenar por precio: Alto a bajo</option>
+                                    <option value="">Ordenar por precio: Bajo a alto</option>
+                                    <option value="">Lo último</option>
+                                    <option value="">Lo más valorado</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="line hide-s">
+                        <div id="clearance-carousel" class="owl-carousel owl-theme">
+                            <% productsClearance.forEach(element=> { %>
+                                <article class="ofertas-android">
+                                    <div>
+                                        <a href="/products/productDetail/<%= element.id %>">
+                                            <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                            <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                        </a>
+                                        <div class="descriptionProduct">
+                                            <h5 class="detailProductHome">
+                                                <ul>
+                                                    <li>
+                                                        <%= element.name %>
+                                                    </li>
+                                                    <li>
+                                                        $ <%= toThousand(element.price) %>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <a class="btnBuyHome" href="#"
+                                                onclick="addItem(event,'<%=element.id%>')">COMPRAR</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% }) %>
+                                    <div class="item"><img src="/img/logo-roma.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- LIQUIDACIÓN CAROUSEL OWL /-->
+
+                <!-- ULTIMOS VISTOS CARROUSEL OWL-->
+                <section class="lastViews">
+                    <h4 class="lastViews">Últimos vistos</h4>
+                    <div class="line hide-s">
+                        <div id="lastViews-carousel" class="owl-carousel owl-theme">
+                            <% productsLastView.forEach(element=> { %>
+                                <article class="ofertas-android">
+                                    <div class="item">
+                                        <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                        <div class="descriptionProduct">
+                                            <h5 class="detailProductHome">
+                                                <ul>
+                                                    <li>
+                                                        <%= element.name %>
+                                                    </li>
+                                                    <li>
+                                                        $ <%= toThousand(element.price) %>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <a class="btnBuyHome" href="#"
+                                                onclick="addItem(event,'<%=element.id%>')">COMPRAR</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% }) %>
+                                    <div class="item"><img src="/img/logo-roma.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ULTIMOS VISTOS CARROUSEL OWL /-->
+
+                <hr>
+                <h4 class="ofertas-main">OFERTAS</h4>
+                <!-- OFERTAS -->
+                <section class="ofertas-main">
+
+                    <!-- SIMPLEMENTE PONE RUTAS DINÁMICAS DONDE SE REQUIERA -->
+                    <% productsOff.forEach(element=> { %>
+                        <article class="ofertas-android">
+                            <div>
+                                <!--          /RUTA URI -->
+                                <a href="/products/productDetail/<%= element.id %>">
+                                    <!--             /RUTA AL ARCHIVO              = NOMBRE IMAGEN EN DB -->
+                                    <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                    <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                </a>
+                                <h5>
+                                    <%= element.discount %> % OFF
+                                </h5>
+                            </div>
+                        </article>
+                        <a class="btnBuyHome" href="#" onclick="addItem(event,'<%=element.id%>')">AÑADIR AL
+                            CARRITO</a>
+
+                        <article class="ofertas-tablet">
+                            <div>
+                                <!--          /RUTA URI -->
+                                <a href="/products/productDetail/<%= element.id %>">
+                                    <!--             /RUTA AL ARCHIVO              = NOMBRE IMAGEN EN DB -->
+                                    <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                    <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                </a>
+                                <h5>
+                                    <%= element.discount %> % OFF
+                                </h5>
+                            </div>
+                        </article>
+
+                        <article class="ofertas-desktop">
+                            <div>
+                                <!--          /RUTA URI -->
+                                <a href="/products/productDetail/<%= element.id %>">
+                                    <!--             /RUTA AL ARCHIVO              = NOMBRE IMAGEN EN DB -->
+                                    <img src="/img/productDetail-splide/<%= element.image[0].file%>" alt="">
+                                    <!--                                                                                   [0]   SELECCIONA IMAGEN POR INDICE -->
+                                </a>
+                                <h5>
+                                    <%= element.discount %> % OFF
+                                </h5>
+                            </div>
+                        </article>
+                        <!-- COMPROBAR -->
+                        <%= console.log(element.id); %>
+                            <!-- IMPRIME 1 2 3 4 -->
+                            <% }) %>
+
+                </section>
+                <!-- OFERTAS  / -->
+
+
+
+
+
+
+            </main>
+
+
+
+
+
+
+
+            <!-- CONTROL SLIDES -->
+
+            <!-- Banner Splide -->
+            <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script> ESTE TAMBIEN FUNCIONA-->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    new Splide('.splide', {
+                        type: 'loop', // 'slide' 'fade' 'loop'
+                        perPage: 1,
+                        autoplay: true,
+                        speed: 1000, // VELOCIDAD DEL SLIDE 3000
+                        interval: 7000, // RETARDO HASTA LA PRÓXIMA IMÁGEN 60000 * 2
+                        pauseOnHover: false,
+                        // rewind: false,
+                        transition: 'fade'
+                    }).mount();
+                });
+                add('<li class="splide__slide"></li>');
+            </script>
+            <!-- Banner Splide /-->
+
+            <!-- MAS VENDIDOS owl-carousel CONTROL -->
+            <script type="text/javascript" src="/templates/shop-template/js/responsee.js"></script>
+            <script type="text/javascript" src="/templates/shop-template/owl-carousel/owl.carousel.js"></script>
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    var owl = $('#muchSale-carousel');
+                    owl.owlCarousel({
+                        nav: true,
+                        dots: true,
+                        items: 4,
+                        loop: true,
+                        navText: ["&#xf007", "&#xf006"],
+                        autoplay: true,
+                        autoplayTimeout: 2000,
+                        autoHeight: false,
+                        margin: 7,
+                        mouseDrag: true,
+                        touchDrag: true,
+                        pullDrag: true,
+                        freeDrag: true,
+                        stagePadding: false,
+                        merge: true,
+                        autoWidth: false,
+                        rewind: true,
+                        slideBy: 1,
+                        autoplayHoverPause: true,
+                        autoplaySpeed: false, //number / boolean
+                        checkVisible: true,
+                        fluidSpeed: false,//number / boolean
+                        smartSpeed: true,
+                    });
+                    // https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html
+                })
+            </script>
+            <!-- MAS VENDIDOS owl-carousel CONTROL / -->
+
+            <!-- PROMOCION CARROUSEL OWL-->
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    var owl = $('#promo-carousel');
+                    owl.owlCarousel({
+                        nav: true,
+                        dots: true,
+                        items: 4,
+                        loop: true,
+                        navText: ["&#xf007", "&#xf006"],
+                        autoplay: true,
+                        autoplayTimeout: 2000,
+                        autoHeight: false,
+                        margin: 7,
+                        mouseDrag: true,
+                        touchDrag: true,
+                        pullDrag: true,
+                        freeDrag: true,
+                        stagePadding: false,
+                        merge: true,
+                        autoWidth: false,
+                        rewind: true,
+                        slideBy: 1,
+                        autoplayHoverPause: true,
+                        autoplaySpeed: false, //number / boolean
+                        checkVisible: true,
+                        fluidSpeed: false,//number / boolean
+                        smartSpeed: true,
+                    });
+                    // https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html
+                })
+            </script>
+            <!-- PROMOCION CARROUSEL OWL /-->
+
+            <!-- OFERTAS CARROUSEL OWL-->
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    var owl = $('#off-carousel');
+                    owl.owlCarousel({
+                        nav: true,
+                        dots: true,
+                        items: 4,
+                        loop: true,
+                        navText: ["&#xf007", "&#xf006"],
+                        autoplay: true,
+                        autoplayTimeout: 2000,
+                        autoHeight: false,
+                        margin: 7,
+                        mouseDrag: true,
+                        touchDrag: true,
+                        pullDrag: true,
+                        freeDrag: true,
+                        stagePadding: false,
+                        merge: true,
+                        autoWidth: false,
+                        rewind: true,
+                        slideBy: 1,
+                        autoplayHoverPause: true,
+                        autoplaySpeed: false, //number / boolean
+                        checkVisible: true,
+                        fluidSpeed: false,//number / boolean
+                        smartSpeed: true,
+                    });
+                    // https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html
+                })
+            </script>
+            <!-- OFERTAS CARROUSEL OWL /-->
+
+            <!-- LIQUIDACION CARROUSEL OWL-->
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    var owl = $('#clearance-carousel');
+                    owl.owlCarousel({
+                        nav: true,
+                        dots: true,
+                        items: 4,
+                        loop: true,
+                        navText: ["&#xf007", "&#xf006"],
+                        autoplay: true,
+                        autoplayTimeout: 2000,
+                        autoHeight: false,
+                        margin: 7,
+                        mouseDrag: true,
+                        touchDrag: true,
+                        pullDrag: true,
+                        freeDrag: true,
+                        stagePadding: false,
+                        merge: true,
+                        autoWidth: false,
+                        rewind: true,
+                        slideBy: 1,
+                        autoplayHoverPause: true,
+                        autoplaySpeed: false, //number / boolean
+                        checkVisible: true,
+                        fluidSpeed: false,//number / boolean
+                        smartSpeed: true,
+                    });
+                    // https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html
+                })
+            </script>
+            <!-- LIQUIDACION CARROUSEL OWL /-->
+
+            <!-- ULTIMOS VISTOS CARROUSEL OWL-->
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    var owl = $('#lastViews-carousel');
+                    owl.owlCarousel({
+                        nav: true,
+                        dots: true,
+                        items: 4,
+                        loop: true,
+                        navText: ["&#xf007", "&#xf006"],
+                        autoplay: true,
+                        autoplayTimeout: 2000,
+                        autoHeight: false,
+                        margin: 7,
+                        mouseDrag: true,
+                        touchDrag: true,
+                        pullDrag: true,
+                        freeDrag: true,
+                        stagePadding: false,
+                        merge: true,
+                        autoWidth: false,
+                        rewind: true,
+                        slideBy: 1,
+                        autoplayHoverPause: true,
+                        autoplaySpeed: false, //number / boolean
+                        checkVisible: true,
+                        fluidSpeed: false,//number / boolean
+                        smartSpeed: true,
+                    });
+                    // https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html
+                })
+            </script>
+            <!-- ULTIMOS VISTOS CARROUSEL OWL /-->
+
+            <%- include('../partials/footer') %>
+
+                <!-- PONER AQUI ARCHIVOS javascript QUE QUIERAS VINCULAR CON ESTE ARCHIVO -->
+                <!-- CODIGO PUESTO EN ARCHIVOS javascript SE VEN EN CONSOLA AL EJECUTAR EN EL NAVEGADOR ESTE ARCHIVO ejs -->
+                <!-- SI NO VINCULAS ASÍ NUNCA AFECTARÁ TU javascript A TU ARCHIVO html o ejs ... -->
+                <script src="/javascripts/index.js"></script>
+                <script src="/javascripts/cart.js"></script>
+                <script src="/javascripts/app.js"></script>
+
+    </body>
+
+</html>
